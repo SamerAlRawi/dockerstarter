@@ -1,0 +1,80 @@
+version: "3"
+
+volumes:
+  redis_data:
+  sql_data:
+  rabbit_data:
+
+services: 
+    nginx:
+        container_name: gateway
+        build: 
+            context: ./Nginx
+            dockerfile: Dockerfile
+        ports: 
+            - 80:80
+            - 443:443
+        restart: always
+    client:
+        container_name: angular
+        build:
+            context: ./Client
+            dockerfile: Dockerfile
+        ports: 
+            - 5000:80
+    webapi:
+        container_name: webapi
+        build: 
+            context: ./API
+            dockerfile: Dockerfile
+        ports: 
+            - 3000:80
+    azfunc:
+        container_name: azfunc
+        build: 
+            context: ./DockerFunction
+            dockerfile: Dockerfile
+        ports: 
+            - 5050:80
+    redis:
+        container_name: redis
+        image: "redis:latest"
+        ports:
+            - "6379:6379"
+        expose:
+            - "6379"
+        volumes:
+            - redis_data:/data
+    redisinsight:
+        container_name: redisinsight
+        image: "redislabs/redisinsight:latest"
+        ports:
+            - "8001:8001"
+        expose:
+            - "8001"
+        volumes:
+            - redis_data:/data
+    sqlserver:
+        container_name: sqlserver
+        image: "mcr.microsoft.com/mssql/server:2019-CU13-ubuntu-20.04"
+        # volumes:
+        #     - sql_data:/var/opt/mssql/data
+        #     - sql_data:/var/opt/mssql/log
+        #     - ./sql_data:/var/opt/mssql/data
+        #     - ./sql_data:/var/opt/mssql/log
+        environment:
+            SA_PASSWORD: "Pass123@"
+            ACCEPT_EULA: "Y"
+    rabbitmq:
+        container_name: rabbitmq
+        image: rabbitmq:3-management-alpine
+        ports:
+            - "5672:5672"
+            - "15672:15672"        
+        expose:
+            - "5672"
+            - "15672"
+        volumes:
+            - rabbit_data:/var/lib/rabbitmq
+            # - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf    
+    

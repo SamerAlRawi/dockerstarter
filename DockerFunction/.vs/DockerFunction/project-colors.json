@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "ae63d69f-0960-4439-974d-254c6e44d96f": {
+      "ProjectGuid": "ae63d69f-0960-4439-974d-254c6e44d96f",
+      "DisplayName": "DockerFunction",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
