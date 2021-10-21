@@ -6,14 +6,14 @@ EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["DockerFunction/DockerFunction.csproj", "DockerFunction/"]
-RUN dotnet restore "DockerFunction/DockerFunction.csproj"
+COPY ["AzFunction/AzFunction.csproj", "AzFunction/"]
+RUN dotnet restore "AzFunction/AzFunction.csproj"
 COPY . .
-WORKDIR "/src/DockerFunction"
-RUN dotnet build "DockerFunction.csproj" -c Release -o /app/build
+WORKDIR "/src/AzFunction"
+RUN dotnet build "AzFunction.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DockerFunction.csproj" -c Release -o /app/publish
+RUN dotnet publish "AzFunction.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /home/site/wwwroot

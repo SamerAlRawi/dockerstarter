@@ -32,7 +32,7 @@ services:
     azfunc:
         container_name: azfunc
         build: 
-            context: ./DockerFunction
+            context: ./AzFunction
             dockerfile: Dockerfile
         ports: 
             - 5050:80

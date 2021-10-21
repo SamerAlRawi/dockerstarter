@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31808.319
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DockerFunction", "DockerFunction\DockerFunction.csproj", "{AE63D69F-0960-4439-974D-254C6E44D96F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzFunction", "AzFunction\AzFunction.csproj", "{AE63D69F-0960-4439-974D-254C6E44D96F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

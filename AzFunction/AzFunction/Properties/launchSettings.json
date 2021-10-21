@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "DockerFunction": {
+    "AzFunction": {
       "commandName": "Project"
     },
     "Docker": {
