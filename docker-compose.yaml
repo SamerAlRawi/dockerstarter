@@ -67,14 +67,14 @@ services:
             ACCEPT_EULA: "Y"
     rabbitmq:
         container_name: rabbitmq
-        image: rabbitmq:3-management-alpine
+        build: 
+            context: ./Rabbit
+            dockerfile: Dockerfile
         ports:
             - "5672:5672"
             - "15672:15672"        
         expose:
-            - "5672"
             - "15672"
         volumes:
             - rabbit_data:/var/lib/rabbitmq
-            # - ./rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf    
     

@@ -1,0 +1,84 @@
+{
+    "users": [
+        {
+         "name": "reguser",
+         "password": "reguser",
+         "tags": ""
+        },
+        {
+         "name": "adminuser",
+         "password": "adminpass",
+         "tags": "administrator"
+        }
+    ],
+    "vhosts": [
+      {
+        "name": "/"
+      }
+    ],
+    "permissions": [
+      {
+        "user": "adminuser",
+        "vhost": "/",
+        "configure": ".*",
+        "write": ".*",
+        "read": ".*"
+      }
+    ],
+    "parameters": [],
+    "policies": [],    
+    "exchanges": [
+        {
+          "name": "classic-queue-ex",
+          "vhost": "/",
+          "type": "direct",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        },
+        {
+          "name": "quorum-queue-ex",
+          "vhost": "/",
+          "type": "direct",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        }
+    ],
+    "queues": [
+      {
+        "name": "classic-queue",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      },
+      {
+        "name": "quorum-queue",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,        
+        "arguments": {"x-queue-type": "quorum"}
+      }
+    ],
+    "bindings": [
+        {
+          "source": "classic-queue-ex",
+          "vhost": "/",
+          "destination": "classic-queue",
+          "destination_type": "queue",
+          "routing_key": "*",
+          "arguments": {}
+        },
+        {
+          "source": "quorum-queue-ex",
+          "vhost": "/",
+          "destination": "quorum-queue",
+          "destination_type": "queue",
+          "routing_key": "*",
+          "arguments": {}
+        }
+    ]
+  }
