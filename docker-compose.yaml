@@ -36,6 +36,11 @@ services:
             dockerfile: Dockerfile
         ports: 
             - 5050:80
+        environment:
+            RabbitMQConnection: "amqp://adminuser:adminpass@rabbitmq:5672"
+            rabbitHost: "rabbitmq"
+            rabbitUser: "adminuser"
+            rabbitPass: "adminpass"
     redis:
         container_name: redis
         image: "redis:latest"
@@ -71,10 +76,11 @@ services:
             context: ./Rabbit
             dockerfile: Dockerfile
         ports:
-            - "5672:5672"
-            - "15672:15672"        
+            - "15672:15672"  
+            - "5672:5672"        
         expose:
             - "15672"
+            - "5672"
         volumes:
             - rabbit_data:/var/lib/rabbitmq
     

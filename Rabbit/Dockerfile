@@ -9,7 +9,8 @@ RUN chown rabbitmq:rabbitmq /etc/rabbitmq/rabbitmq.config /etc/rabbitmq/definiti
 
 CMD ["rabbitmq-server"]
 
-# EXPOSE 15672
+EXPOSE 15672
+EXPOSE 5672
 
 # RUN rabbitmqctl add_user defaultuser defaultuser
 # RUN rabbitmqctl set_user_tags username administrator
