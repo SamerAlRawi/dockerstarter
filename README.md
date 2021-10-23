@@ -3,7 +3,17 @@
   
 
 A Sample Application implementing and integrating multiple docker services for communication using docker-compose. includes aspnet **Core Web API**, frontend **Angular** application, **RabbitMQ**, **Redis** cache, **SqlServer**, and **azure function** and **NginX** gateway with ssl using local CA. 
-  
+
+# Local Debugging  
+add the following lines to your hosts file:
+
+  #docker
+  127.0.0.1 rabbitmq
+  127.0.0.1 redis
+  127.0.0.1 azfunc
+  127.0.0.1 azurite
+
+run compose.cmd 
 
 # What is Docker Compose?
 
