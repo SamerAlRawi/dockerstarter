@@ -43,6 +43,8 @@ services:
             rabbitHost: "rabbitmq"
             rabbitUser: "adminuser"
             rabbitPass: "adminpass"
+        depends_on:
+            - rabbitmq
     azurite:
         image: mcr.microsoft.com/azure-storage/azurite
         container_name: azurite
