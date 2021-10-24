@@ -30,6 +30,9 @@ services:
             dockerfile: Dockerfile
         ports: 
             - 3000:80
+        environment:
+            redisConnection: "redis:6379"
+            sqlConnection: "Server=sqlserver;Database=master;User=sa;Password=Pass123@;"
     azfunc:
         container_name: azfunc
         build: 

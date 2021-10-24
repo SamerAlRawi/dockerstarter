@@ -7,9 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private http: HttpClient){
-    this.http.get('/api/weather').subscribe(console.log);
-  }
-
   title = 'client';
 }
