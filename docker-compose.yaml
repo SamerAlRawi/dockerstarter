@@ -32,7 +32,7 @@ services:
             - 3000:80
         environment:
             redisConnection: "redis:6379"
-            sqlConnection: "Server=sqlserver;Database=master;User=sa;Password=Pass123@;"
+            sqlConnection: "Server=sqlserver;Database=WebApi;User=sa;Password=Pass123@;"
     azfunc:
         container_name: azfunc
         build: 
@@ -78,15 +78,15 @@ services:
             - redis_data:/data
     sqlserver:
         container_name: sqlserver
-        image: "mcr.microsoft.com/mssql/server:2019-CU13-ubuntu-20.04"
-        # volumes:
-        #     - sql_data:/var/opt/mssql/data
-        #     - sql_data:/var/opt/mssql/log
-        #     - ./sql_data:/var/opt/mssql/data
-        #     - ./sql_data:/var/opt/mssql/log
-        environment:
-            SA_PASSWORD: "Pass123@"
-            ACCEPT_EULA: "Y"
+        build: 
+            context: ./SqlServer
+            dockerfile: Dockerfile
+        volumes:
+            - sql_data:/var/opt/mssql/data
+        ports:
+            - "1433:1433"  
+        expose:
+            - "1433"
     rabbitmq:
         container_name: rabbitmq
         build: 
